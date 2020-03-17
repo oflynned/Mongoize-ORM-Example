@@ -1,0 +1,39 @@
+{
+  "name": "mongoize-example",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "yarn clean && tsc",
+    "clean": "rimraf ./dist",
+    "start:dev": "NODE_ENV=development ts-node ./src/infrastructure/app.ts",
+    "start:prod": "NODE_ENV=production node ./dist/infrastructure/app.js",
+    "test": "echo \"todo\"",
+    "test:unit": "echo \"todo\"",
+    "test:integration": "echo \"todo\""
+  },
+  "dependencies": {
+    "@oflynned/mongoize-orm": "^0.9.4",
+    "cookie-parser": "~1.4.4",
+    "cors": "latest",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "hbs": "~4.0.4",
+    "helmet": "latest",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "node-sass-middleware": "0.11.0"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.0",
+    "@types/cookie-parser": "^1.4.2",
+    "@types/cors": "^2.8.6",
+    "@types/express": "^4.17.3",
+    "@types/helmet": "0.0.45",
+    "@types/morgan": "^1.7.37",
+    "@types/node": "^13.1.2",
+    "nodemon": "^2.0.2",
+    "rimraf": "^3.0.2",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.3"
+  }
+}

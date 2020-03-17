@@ -1,0 +1,24 @@
+import express, {Application} from 'express';
+import bodyParser from 'body-parser';
+import morgan from 'morgan';
+import helmet from 'helmet';
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
+
+import sitemap from './sitemap';
+import {MongoClient} from "@oflynned/mongoize-orm";
+
+export const buildServer = (client: MongoClient): Application => {
+    const app = express();
+    app.use(morgan('combined'));
+    app.use(bodyParser.json());
+    app.use(cookieParser());
+    app.use(helmet());
+    app.use(cors());
+
+    sitemap(app, client);
+
+    return app;
+};
+
+export default buildServer;
