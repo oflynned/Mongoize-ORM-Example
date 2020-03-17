@@ -8,7 +8,7 @@ import commentRoute from '../routes/comments';
 const sitemap = (app: Application, client: MongoClient): void => {
     app.get("/", indexRoute()["/"].get);
 
-    app.post('/users', userRoute(client)['/'].get);
+    app.post('/users', userRoute(client)['/'].post);
     app.get('/users', userRoute(client)['/'].get);
     app.get('/users/:id', userRoute(client)["/:id"].get);
     app.get('/users/:id/comments', userRoute(client)["/:id/comments"].get);
