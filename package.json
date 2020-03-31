@@ -12,7 +12,7 @@
     "test:integration": "echo \"todo\""
   },
   "dependencies": {
-    "@oflynned/mongoize-orm": "^0.9.4",
+    "@oflynned/mongoize-orm": "file:./node_modules/@oflynned/mongoize-orm",
     "cookie-parser": "~1.4.4",
     "cors": "latest",
     "debug": "~2.6.9",
@@ -33,6 +33,7 @@
     "@types/helmet": "0.0.45",
     "@types/morgan": "^1.7.37",
     "@types/node": "^13.1.2",
+    "lib-manager": "^0.0.7",
     "nodemon": "^2.0.2",
     "rimraf": "^3.0.2",
     "ts-node": "^8.6.2",

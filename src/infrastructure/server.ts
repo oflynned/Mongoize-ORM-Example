@@ -1,3 +1,4 @@
+import {MongoClient} from "../../node_modules/@oflynned/mongoize-orm";
 import express, {Application} from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
@@ -6,7 +7,6 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 
 import sitemap from './sitemap';
-import {MongoClient} from "@oflynned/mongoize-orm";
 
 export const buildServer = (client: MongoClient): Application => {
     const app = express();

@@ -1,15 +1,15 @@
-import {BaseDocument, Schema, Joi} from "@oflynned/mongoize-orm";
+import {BaseDocument, Schema, Joi, Repository, MongoClient} from "../../node_modules/@oflynned/mongoize-orm";
 import {User} from "./user.model";
 
 export interface IComment {
-    poster: User,
+    posterId: string,
     content: string;
 }
 
 class CommentSchema extends Schema<IComment> {
     joiBaseSchema(): object {
         return {
-            poster: Joi.string().required(),
+            posterId: Joi.string().required(),
             content: Joi.string().max(512).required()
         };
     }
@@ -22,5 +22,9 @@ class CommentSchema extends Schema<IComment> {
 export class Comment extends BaseDocument<IComment, CommentSchema> {
     joiSchema(): CommentSchema {
         return new CommentSchema();
+    }
+
+    async poster(client: MongoClient): Promise<User> {
+        return Repository.with(User).findById(client, this.record.posterId);
     }
 }
