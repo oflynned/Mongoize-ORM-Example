@@ -12,7 +12,7 @@
     "test:integration": "echo \"todo\""
   },
   "dependencies": {
-    "@oflynned/mongoize-orm": "file:./node_modules/@oflynned/mongoize-orm",
+    "@oflynned/mongoize-orm": "latest",
     "cookie-parser": "~1.4.4",
     "cors": "latest",
     "debug": "~2.6.9",

@@ -1,6 +1,6 @@
 import {Request, Response} from 'express';
 import {createUser, findUser, findUsers} from "../controllers/user.controller";
-import {MongoClient} from "../../node_modules/@oflynned/mongoize-orm";
+import {MongoClient} from "../../node_modules/@oflynned/mongoize-orm/src";
 import {Comment} from "../models/comment.model";
 import {User} from "../models/user.model";
 
@@ -9,7 +9,7 @@ const routes = (client: MongoClient) => {
         "/": {
             post: async (req: Request, res: Response): Promise<void> => {
                 const user = await createUser(client, req.body);
-                res.status(201).json(user);
+                res.status(201).json(user.toJson());
             },
             get: async (req: Request, res: Response): Promise<void> => {
                 const users = await findUsers(client, {});

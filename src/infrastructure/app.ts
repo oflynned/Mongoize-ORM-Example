@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-import {ConnectionOptions, MongoClient} from "@oflynned/mongoize-orm";
+import {ConnectionOptions, MongoClient} from "@oflynned/mongoize-orm/src";
 import {buildServer} from './server';
 import serverConfig from "../config/server.config";
 

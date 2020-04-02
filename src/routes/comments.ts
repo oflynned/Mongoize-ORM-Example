@@ -1,7 +1,6 @@
 import {Request, Response} from 'express';
 import {createComment, findComment, findComments} from "../controllers/comment.controller";
-import {MongoClient} from "../../node_modules/@oflynned/mongoize-orm";
-import {User} from "../models/user.model";
+import {MongoClient} from "../../node_modules/@oflynned/mongoize-orm/src";
 import {Comment} from "../models/comment.model";
 
 const routes = (client: MongoClient) => {

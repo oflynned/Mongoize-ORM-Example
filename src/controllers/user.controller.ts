@@ -1,16 +1,16 @@
 import {IUser, User} from "../models/user.model";
-import {MongoClient, Repository} from "../../node_modules/@oflynned/mongoize-orm";
+import {MongoClient, Repository} from "../../node_modules/@oflynned/mongoize-orm/src";
 
-export async function createUser(client: MongoClient, payload: IUser): Promise<object> {
+export async function createUser(client: MongoClient, payload: IUser): Promise<User> {
     const user = await Repository.with(User).findOne(client, {email: payload.email});
     if (user) {
         return user;
     }
 
-    return (await new User().build(payload).save(client)).toJson();
+    return new User().build(payload).save(client);
 }
 
-export async function findUser(client: MongoClient, id: string): Promise<User | undefined> {
+export async function findUser(client: MongoClient, id: string): Promise<User> {
     const user = await Repository.with(User).findById(client, id);
     if (user) {
         return user;

@@ -1,4 +1,4 @@
-import {MongoClient} from "../../node_modules/@oflynned/mongoize-orm";
+import {MongoClient} from "../../node_modules/@oflynned/mongoize-orm/src";
 import express, {Application} from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
