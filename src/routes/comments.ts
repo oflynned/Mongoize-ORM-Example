@@ -8,7 +8,7 @@ const routes = (client: MongoClient) => {
         "/": {
             post: async (req: Request, res: Response): Promise<void> => {
                 const comment = await createComment(client, req.body);
-                res.status(201).json(comment);
+                res.status(201).json(comment.toJson());
             },
             get: async (req: Request, res: Response): Promise<void> => {
                 const comments = await findComments(client, {});
