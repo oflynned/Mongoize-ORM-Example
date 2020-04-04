@@ -1,6 +1,6 @@
 import {Request, Response} from 'express';
 import {createUser, findUser, findUsers} from "../controllers/user.controller";
-import {MongoClient} from "../../node_modules/@oflynned/mongoize-orm/src";
+import {MongoClient} from "mongoize-orm";
 import {Comment} from "../models/comment.model";
 import {User} from "../models/user.model";
 

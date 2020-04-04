@@ -1,4 +1,4 @@
-import {BaseDocument, Schema, Joi, Repository, MongoClient} from "../../node_modules/@oflynned/mongoize-orm/src";
+import {BaseDocument, Schema, Joi, Repository, MongoClient} from "mongoize-orm";
 import {Comment} from "./comment.model";
 
 export interface IUser {

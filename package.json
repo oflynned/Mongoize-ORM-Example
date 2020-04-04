@@ -12,7 +12,7 @@
     "test:integration": "echo \"todo\""
   },
   "dependencies": {
-    "@oflynned/mongoize-orm": "latest",
+    "mongoize-orm": "latest",
     "cookie-parser": "~1.4.4",
     "cors": "latest",
     "debug": "~2.6.9",
@@ -38,8 +38,5 @@
     "rimraf": "^3.0.2",
     "ts-node": "^8.6.2",
     "typescript": "^3.8.3"
-  },
-  "engines": {
-    "node": "13.6.0"
   }
 }

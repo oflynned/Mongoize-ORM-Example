@@ -1,5 +1,5 @@
 import {IComment, Comment} from "../models/comment.model";
-import {MongoClient, Repository} from "../../node_modules/@oflynned/mongoize-orm/src";
+import {MongoClient, Repository} from "mongoize-orm";
 
 export async function createComment(client: MongoClient, payload: IComment): Promise<Comment> {
     return new Comment().build(payload).save(client);

@@ -1,5 +1,5 @@
 import {Application} from 'express';
-import {MongoClient} from "../../node_modules/@oflynned/mongoize-orm/src";
+import {MongoClient} from "mongoize-orm";
 
 import indexRoute from "../routes";
 import userRoute from '../routes/users';
