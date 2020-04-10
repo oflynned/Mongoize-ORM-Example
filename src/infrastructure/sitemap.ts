@@ -1,4 +1,4 @@
-import {Application} from 'express';
+import {Application, Request, Response} from 'express';
 import {MongoClient} from "mongoize-orm";
 
 import indexRoute from "../routes";
@@ -17,6 +17,10 @@ const sitemap = (app: Application, client: MongoClient): void => {
     app.get("/comments", commentRoute(client)["/"].get);
     app.get("/comments/:id", commentRoute(client)["/:id"].get);
     app.get("/comments/:id/poster", commentRoute(client)["/:id/poster"].get);
+
+    app.use("*", (req: Request, res: Response) => {
+        res.status(404).send();
+    });
 };
 
 export default sitemap;
