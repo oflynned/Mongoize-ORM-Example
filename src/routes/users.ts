@@ -34,9 +34,13 @@ const routes = (client: MongoClient) => {
     '/:id/comments': {
       get: async (req: Request, res: Response): Promise<void> => {
         const { id } = req.params;
-        const user = await findUser(client, id);
-        const comments = await user.comments(client);
-        res.json(comments.map((comment: Comment) => comment.toJson()));
+        try {
+          const user = await findUser(client, id);
+          const comments = await user.comments(client);
+          res.json(comments.map((comment: Comment) => comment.toJson()));
+        } catch(err) {
+          res.status(404).send();
+        }
       }
     }
   };
