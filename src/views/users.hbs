@@ -1,0 +1,15 @@
+<div class="content-area">
+    <h1>Users</h1>
+    <ul>
+        {{#each users}}
+            <li>
+                <div>
+                    <h3><a href="/{{_id}}/comments">{{name}}</a></h3>
+                    <p>Account was created on <strong>{{createdAt}}</strong></p>
+                    <p>Account was updated? <strong>{{#if updatedAt}}Yes{{else}}No{{/if}}</strong></p>
+                    <p>Account was deleted? <strong>{{#if deletedAt}}Yes{{else}}No{{/if}}</strong></p>
+                </div>
+            </li>
+        {{/each}}
+    </ul>
+</div>
