@@ -38,7 +38,7 @@ const routes = (client: MongoClient) => {
           const user = await findUser(client, id);
           const comments = await user.comments(client);
           res.json(comments.map((comment: Comment) => comment.toJson()));
-        } catch(err) {
+        } catch (err) {
           res.status(404).send();
         }
       }
