@@ -1,12 +1,12 @@
-import {BaseDocument, Schema, Joi, Repository, MongoClient} from "mongoize-orm";
+import {BaseDocument, Schema, Joi, Repository, MongoClient, BaseModelType} from "mongoize-orm";
 import {Comment} from "./comment.model";
 
-export interface IUser {
+export interface UserType extends BaseModelType {
     name: string;
     email: string;
 }
 
-class UserSchema extends Schema<IUser> {
+class UserSchema extends Schema<UserType> {
     joiBaseSchema(): object {
         return {
             name: Joi.string().required(),
@@ -19,7 +19,7 @@ class UserSchema extends Schema<IUser> {
     }
 }
 
-export class User extends BaseDocument<IUser, UserSchema> {
+export class User extends BaseDocument<UserType, UserSchema> {
     joiSchema(): UserSchema {
         return new UserSchema();
     }

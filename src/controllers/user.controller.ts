@@ -1,7 +1,7 @@
-import {IUser, User} from "../models/user.model";
+import {UserType, User} from "../models/user.model";
 import {MongoClient, Repository} from "mongoize-orm";
 
-export async function createUser(client: MongoClient, payload: IUser): Promise<User> {
+export async function createUser(client: MongoClient, payload: UserType): Promise<User> {
     const user = await Repository.with(User).findOne(client, {email: payload.email});
     if (user) {
         return user;
