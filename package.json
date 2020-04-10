@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "yarn clean && tsc",
+    "build": "yarn clean && tsc && cp -r src/views dist/views && cp -r src/public dist/public",
     "clean": "rimraf ./dist",
     "lint": "prettier --write '**/*.ts' --config ./.prettierrc",
     "prettier": "^1.19.1",
