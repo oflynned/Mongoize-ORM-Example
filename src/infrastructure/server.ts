@@ -5,6 +5,8 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import handlebars from 'express-handlebars';
+import path from 'path';
 
 import sitemap from './sitemap';
 
@@ -15,6 +17,18 @@ export const buildServer = (client: MongoClient): Application => {
   app.use(cookieParser());
   app.use(helmet());
   app.use(cors());
+
+  // templating view layer setup
+  app.set('view engine', 'hbs');
+  app.set('views', path.join(__dirname, '../views'));
+  app.engine(
+    'hbs',
+    handlebars({
+      defaultLayout: 'index',
+      extname: 'hbs'
+    })
+  );
+  app.use(express.static('public'));
 
   sitemap(app, client);
 

@@ -1,7 +1,9 @@
 body {
+  background: red;
   font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
-  .content-area {
-    width: 960px;
-    margin: auto;
-  }
+}
+
+.content-area {
+  width: 960px;
+  margin: auto;
 }

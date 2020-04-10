@@ -1,0 +1,15 @@
+<div class="content-area">
+    <h1>Comments</h1>
+    <a href="/">Back to all users</a>
+    <ul>
+        {{#each comments}}
+            <li>
+                <div>
+                    <h3>Poster: <a href="/{{posterId}}">{{posterId}}</a></h3>
+                    <p>Posted on <strong>{{createdAt}}</strong></p>
+                    <p>{{content}}</p>
+                </div>
+            </li>
+        {{/each}}
+    </ul>
+</div>

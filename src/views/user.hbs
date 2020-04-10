@@ -1,0 +1,8 @@
+<div class="content-area">
+    <h3>
+        <a href="/{{user._id}}/comments">{{user.name}}</a>
+    </h3>
+    <p>Account was created on <strong>{{user.createdAt}}</strong></p>
+    <p>Account was updated? <strong>{{#if user.updatedAt}}Yes{{else}}No{{/if}}</strong></p>
+    <p>Account was deleted? <strong>{{#if user.deletedAt}}Yes{{else}}No{{/if}}</strong></p>
+</div>
