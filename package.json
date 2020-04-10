@@ -12,7 +12,7 @@
     "test:integration": "echo \"todo\""
   },
   "dependencies": {
-    "mongoize-orm": "latest",
+    "mongoize-orm": "0.9.10",
     "cookie-parser": "~1.4.4",
     "cors": "latest",
     "debug": "~2.6.9",
