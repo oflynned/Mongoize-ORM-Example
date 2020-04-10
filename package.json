@@ -5,6 +5,9 @@
   "scripts": {
     "build": "yarn clean && tsc",
     "clean": "rimraf ./dist",
+    "lint": "prettier --write '**/*.ts' --config ./.prettierrc",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1",
     "start:dev": "NODE_ENV=development ts-node ./src/infrastructure/app.ts",
     "start:prod": "NODE_ENV=production node ./dist/infrastructure/app.js",
     "test": "echo \"todo\"",
@@ -12,7 +15,6 @@
     "test:integration": "echo \"todo\""
   },
   "dependencies": {
-    "mongoize-orm": "0.9.10",
     "cookie-parser": "~1.4.4",
     "cors": "latest",
     "debug": "~2.6.9",
@@ -21,6 +23,7 @@
     "hbs": "~4.0.4",
     "helmet": "latest",
     "http-errors": "~1.6.3",
+    "mongoize-orm": "0.9.10",
     "morgan": "~1.9.1",
     "node-sass-middleware": "0.11.0"
   },
@@ -35,8 +38,10 @@
     "@types/node": "^13.1.2",
     "lib-manager": "^0.0.7",
     "nodemon": "^2.0.2",
+    "prettier": "^1.19.1",
     "rimraf": "^3.0.2",
     "ts-node": "^8.6.2",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.8.3"
   }
 }
