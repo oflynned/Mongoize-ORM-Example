@@ -8,39 +8,46 @@ import { MongoClient } from 'mongoize-orm';
 import { Comment } from '../models/comment.model';
 import { User } from '../models/user.model';
 
-const routes = (client: MongoClient) => {
+const routes = () => {
   return {
     '/': {
       post: async (req: Request, res: Response): Promise<void> => {
-        const user = await createUser(client, req.body);
-        res.status(201).json(user.toJson());
+        try {
+          const user = await createUser(req.body);
+          res.status(201).json(user.toJson());
+        } catch (err) {
+          res.status(400).json(err);
+        }
       },
       get: async (req: Request, res: Response): Promise<void> => {
-        const users = await findUsers(client, {});
-        res.json(users.map((user: User) => user.toJson()));
+        const users = await findUsers({});
+        res.status(200).json(users.map((user: User) => user.toJson()));
       }
     },
     '/:id': {
       get: async (req: Request, res: Response): Promise<void> => {
         const { id } = req.params;
         try {
-          const user = await findUser(client, id);
+          const user = await findUser(id);
           res.json(user.toJson());
-        } catch (e) {
-          res.status(404).send();
+        } catch (err) {
+          res.status(404).json(err);
         }
       }
     },
     '/:id/comments': {
       get: async (req: Request, res: Response): Promise<void> => {
         const { id } = req.params;
-        try {
-          const user = await findUser(client, id);
-          const comments = await user.comments(client);
-          res.json(comments.map((comment: Comment) => comment.toJson()));
-        } catch (err) {
+        const user = await findUser(id);
+
+        if (!user) {
           res.status(404).send();
         }
+
+        await user.populate();
+        res.json(
+          user.toJson().comments.map((comment: Comment) => comment.toJson())
+        );
       }
     }
   };
