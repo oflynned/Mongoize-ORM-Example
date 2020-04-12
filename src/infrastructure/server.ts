@@ -9,8 +9,9 @@ import handlebars from 'express-handlebars';
 import path from 'path';
 
 import sitemap from './sitemap';
+import { graphql } from '../graphql';
 
-export const buildServer = (client: MongoClient): Application => {
+export const buildServer = (): Application => {
   const app = express();
   app.use(morgan('combined'));
   app.use(bodyParser.json());
@@ -30,7 +31,8 @@ export const buildServer = (client: MongoClient): Application => {
   );
   app.use(express.static('public'));
 
-  sitemap(app, client);
+  graphql(app);
+  sitemap(app);
 
   return app;
 };

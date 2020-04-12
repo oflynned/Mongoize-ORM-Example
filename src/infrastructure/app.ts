@@ -1,6 +1,10 @@
 require('dotenv').config();
 
-import { ConnectionOptions, MongoClient } from 'mongoize-orm';
+import {
+  bindGlobalDatabaseClient,
+  ConnectionOptions,
+  MongoClient
+} from 'mongoize-orm';
 import { buildServer } from './server';
 import serverConfig from '../config/server.config';
 
@@ -19,9 +23,9 @@ const dbConfig = (): ConnectionOptions => {
 };
 
 (async () => {
-  const client = await new MongoClient().connect(dbConfig());
+  await bindGlobalDatabaseClient(new MongoClient(), dbConfig());
 
-  const server = buildServer(client);
+  const server = buildServer();
   const port = server.get('port') || serverConfig.serverPort;
   server.listen(port, () => {
     console.log(
