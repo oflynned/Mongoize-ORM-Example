@@ -43,7 +43,7 @@ const routes = () => {
         const comment: Comment = await findComment(id);
         await comment.populate();
         if (comment) {
-          res.json(comment.toJson().poster.toJson());
+          res.json(comment.toJson().poster);
           return;
         }
 

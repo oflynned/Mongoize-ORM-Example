@@ -15,7 +15,7 @@ export interface UserType extends CredentialType {
 }
 
 export interface UserRelationshipType extends BaseRelationshipType {
-  comments: Comment[];
+  comments: Comment[] | object[];
 }
 
 class UserSchema extends CredentialSchema<UserType> {
@@ -48,13 +48,10 @@ export class User extends CredentialDocument<
     };
   }
 
-  private async comments(): Promise<Comment[]> {
-    const comments: Comment[] = await Repository.with(Comment).findMany({
-      posterId: this.record._id
-    });
-
-    await Promise.all(comments.map((comment: Comment) => comment.populate()));
-
-    return comments;
+  private async comments(): Promise<object[]> {
+    return Repository.with(Comment).findMany(
+      { posterId: this.record._id },
+      { populate: true }
+    );
   }
 }

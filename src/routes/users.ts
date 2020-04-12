@@ -45,9 +45,7 @@ const routes = () => {
         }
 
         await user.populate();
-        res.json(
-          user.toJson().comments.map((comment: Comment) => comment.toJson())
-        );
+        res.json(user.toJson().comments);
       }
     }
   };
