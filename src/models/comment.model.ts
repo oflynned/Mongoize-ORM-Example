@@ -1,16 +1,21 @@
 import {
-  BaseDocument,
   Schema,
   Joi,
   Repository,
-  MongoClient,
-  BaseModelType
+  BaseModelType,
+  RelationalDocument,
+  BaseRelationshipType,
+  DatabaseClient
 } from 'mongoize-orm';
-import { User } from './user.model';
+import { User, UserRelationshipType } from './user.model';
 
 export interface CommentType extends BaseModelType {
   posterId: string;
   content: string;
+}
+
+interface CommentRelationship extends BaseRelationshipType {
+  poster: User;
 }
 
 class CommentSchema extends Schema<CommentType> {
@@ -28,12 +33,28 @@ class CommentSchema extends Schema<CommentType> {
   }
 }
 
-export class Comment extends BaseDocument<CommentType, CommentSchema> {
+export class Comment extends RelationalDocument<
+  CommentType,
+  CommentSchema,
+  CommentRelationship
+> {
   joiSchema(): CommentSchema {
     return new CommentSchema();
   }
 
-  async poster(client: MongoClient): Promise<User> {
-    return Repository.with(User).findById(client, this.record.posterId);
+  protected async relationalFields(
+    depth: number,
+    client: DatabaseClient
+  ): Promise<CommentRelationship> {
+    await super.relationalFields(depth, client);
+    return {
+      poster: await this.poster()
+    };
+  }
+
+  private async poster(): Promise<User> {
+    const poster = await Repository.with(User).findById(this.record.posterId);
+    // await poster.populate();
+    return poster;
   }
 }
