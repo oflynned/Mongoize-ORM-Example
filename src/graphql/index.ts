@@ -21,22 +21,20 @@ export const graphql = (app: Application) => {
 
     type Query {
       users: [User]
+      user(_id: String): User
       comments: [Comment]
     }
   `;
 
   const userResolvers = {
     Query: {
-      users: async (): Promise<object[]> => {
-        const users: User[] = await Repository.with(User).findAll();
-        return Promise.all(users.map(async (user: User) => user.populate()));
+      users: async (): Promise<User[]> =>
+        Repository.with(User).findAll({ populate: true }),
+      user: async (context: any, { _id }: { _id: string }): Promise<User> => {
+        return Repository.with(User).findById(_id, { populate: true });
       },
-      comments: async (): Promise<object[]> => {
-        const comments: Comment[] = await Repository.with(Comment).findAll();
-        return Promise.all(
-          comments.map(async (comment: Comment) => comment.populate())
-        );
-      }
+      comments: async (): Promise<Comment[]> =>
+        Repository.with(Comment).findAll({ populate: true })
     }
   };
 
